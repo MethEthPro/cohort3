@@ -8,21 +8,52 @@
     <title>
         VISUAL STUDIO CODE EDITOR
     </title>
-    <link rel="stylesheet" href="vscode.css">
+    <link rel="stylesheet" href="index.css">
 </head>
 
+<!-- padding adds extra free space inside the element -->
+<!-- margins adds extra free space around the element  -->
+
 <body>
-    <span >Visual Studio Code</span>
-    <span style="padding-left: 15px;"><a href="https://google.com">Docs</a></span>
-    <span style="padding-left: 15px;">Updates</span>
-    <span style="padding-left: 15px;">Blogs</span>
-    <span style="padding-left: 15px;">API</span>
-    <span style="padding-left: 300px;"><input type="text" placeholder="search docs"></span>
-    <span style="padding-left: 15px;"><button>Download</button></span>
+    <div style="color: white;padding-left: 300px;padding-right: 300px;padding-top: 10px;
+    display: flex;justify-content: space-between;">
+        <div >
+            <img src="https://code.visualstudio.com/favicon.ico" width ="24" style="padding-right: 5px;">
+            <span class="topLink" ><b>Visual Studio Code</b></span>
+            <span class="topLink" ><a href="https://google.com">Docs</a></span>
+            <span class="topLink" >Updates</span>
+            <span class="topLink" >Blogs</span>
+            <span class="topLink" >API</span>
+        </div>
+            <div style="display: flex;justify-content: space-between;" >
+                <div class="topLink" style="padding-top: 10px;height: 10px;"><input type="text" placeholder="search docs"></div>
+                <div class="topLink"  ><button style="background-color:dodgerblue ;color: white;border-radius: 5px;margin: 10px;">Download</button></div>
+            </div>
+    </div>
+        
 
     <br>
-    <center><div><a href="https://google.com" target="_blank">version</a>is now available! Read about the new features and fixes from September.</div></center>
-    
+    <center><div style="color: white;margin-right: 100px;margin-left: 100px;"><a href="https://google.com" target="_blank">version</a>is now available! Read about the new features and fixes from September.</div></center>
+    <br>
+    <br>
+        <!-- flexbox lets us structure the children of a div -->
 
+    <div style="display: flex;justify-content: space-between;margin-left: 200px;margin-right: 200px;">
+
+        <div class="left_banner">
+            <div style="background-color: rgba(63, 60, 60, 0.667);border-radius: 8px;padding: 5px;color: dimgrey;">Free built on open source, runs anywhere</div>
+            
+            <h1>CODE.EDITING</h1>
+
+            <h1>REDEFINED</h1>
+            <div>
+                <button style="background-color:dodgerblue ;color: white;border-radius: 5px;padding: 10px;"><b>Download for MacOS</b></button>
+            </div>
+        </div>
+        <div>
+            <img src="vscode_landing_page.png" width="800">
+        </div>
+
+    </div>    
 
 </body>

@@ -1,0 +1,14 @@
+body{
+    background-color: #0D1117;
+    
+} 
+
+.topLink{
+    color: grey;
+    padding-left: 15px;
+    cursor: pointer;
+}
+.left_banner{
+    color:white;
+    padding-top: 100px;
+}
