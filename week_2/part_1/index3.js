@@ -22,10 +22,19 @@ function afterFileRead(err,content){
 // now guess which output will come first?
 fs.readFile("my_text.txt","utf-8",afterFileRead);
 fs.readFile("my_text_2.txt","utf-8",afterFileRead);
-function rand(){
-    console.log("i am a useless function");
-}
-setTimeout(rand,5000);
+// method 1
+// function rand(){
+//     console.log("i am a useless function");
+// }
+// setTimeout(rand,5000);
+
+// method 2
+setTimeout(function (){
+    console.log("i am a useless function")
+},
+5000);
+// both methods are correct to call the setTimeout async function
+// but start to get comfortable with the 2nd method
 // setTimeout is another asynchronous function that executes a certain function after some time
 // here after 5000ms or 5sec
 console.log("HELLO");
