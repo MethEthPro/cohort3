@@ -1,0 +1,10 @@
+pwd - prints working directory
+cd - change directory
+ls - lists everything at current location
+mkdir - makes a new directory
+touch - makes a new file
+cat - prints the content of a file
+mv - move a file/folder to a new location
+cp - copy a file/folder to a new location 
+node file_name - to run a file
+npm install lib_name - to install a library
