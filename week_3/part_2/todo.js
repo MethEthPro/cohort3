@@ -33,6 +33,7 @@ function addTODO(){
     // button_element.onclick=`deleteTODO(${count})`;
     // wont work
     // so we use setAttribute instead
+    // try to use eventlistener,that is better
     button_element.setAttribute("onclick",`deleteTODO(${count})`);
     button_element.innerHTML="delete";
     // creating a div element which will have span and button as its child

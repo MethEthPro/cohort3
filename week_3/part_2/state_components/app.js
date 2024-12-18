@@ -60,8 +60,10 @@ function createTODOcomponent(todo,count){
     todo['id']=count;
     h1tag.innerHTML=todo['id'] + " "+todo['description'];
     button.innerHTML="delete";
-    // important
-    button.setAttribute("onclick",`deleteTODO(${count})`);
+    // important 
+    // maybe use eventListener, that is better
+    button.addEventListener("click",()=>deleteTODO(count));
+
     div.appendChild(h1tag);
     div.appendChild(button);
     return div
