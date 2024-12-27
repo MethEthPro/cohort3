@@ -1,0 +1,8 @@
+try to go through the notes first 
+https://projects.100xdevs.com/tracks/http-intro/Intro-to-HTTP-1
+
+after understanding all the terms boradly we now try to implement our own http server
+using express then we wil try to learn 
+
+so we will make backend for a todo app(http)
+and after learning fetch and cors we can do the forntend as well
