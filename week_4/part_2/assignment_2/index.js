@@ -50,7 +50,7 @@ Object.entries(content).forEach(([KEY,VALUE]) => {
 });
 
 
-
+// this is a middleware
 app.use(express.json());
 
 
