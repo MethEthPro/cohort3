@@ -1,0 +1,18 @@
+1 . create a HTTP server that does something
+2 . write a html file that hits this backend file using fetch api 
+
+you should know how to serve a html file 
+using   npx serve 
+
+once you have both frontend and backend running
+You will notice the cross origin request fails
+
+
+first install the cors library using 
+npm install cors
+Use the cors middleware
+
+
+
+but if you host frontend and backend on the same location
+then there is no cross origin happening so there wont be any problem obviously 
