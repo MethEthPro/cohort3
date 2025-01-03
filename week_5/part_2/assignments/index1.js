@@ -5,6 +5,8 @@
 const express=require("express");
 const app=express();
 
+
+// this middleware ensures that the body content is correctly parsed into json
 app.use(express.json());
 
 // my middleware
