@@ -1,0 +1,35 @@
+suppose we were to signin in facebook , then we would give our email id and pass to the site
+and in return we would get a token , this token will make sure that for all 
+the further request like GET all post, POST a mew post , the site remembers us
+
+it gives us persistent sessions , we login once and it works forever
+we get this token everytime we sign in
+
+
+
+now that we have implemented a manual token
+we see that everytime we have a me request or another request where we have to check
+if the user exists we have to go to our databse ,in this the in memory users list , to verify
+existance of user with the help of the token provided, this is an expensive operation
+
+
+so this type of token that we implemented are called stateful tokens
+By stateful here, we mean that we need to store these tokens in a variable right now (and eventually in a database). 
+
+The problem is that we need to send a request to the database every time the user wants to hit an authenticated endpoint
+
+the solution is JWTs
+
+JSON web Tokens
+
+JWTs, or JSON Web Tokens, are a compact and self-contained way to represent information between two parties.
+They are commonly used for authentication and information exchange in web applications.
+
+JWTs are Stateless: JWTs contain all the information needed to authenticate a request, so the server doesn’t need to store session data.
+All the data is stored in the token itself.
+
+how is this jwt formed?
+
+basically it is an encoding of the email,name
+
+so when a user send the jwt in the header , it can be decoded in the server only and user existence can be checked, without ever gping to our database
