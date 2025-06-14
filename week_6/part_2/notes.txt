@@ -1,0 +1,20 @@
+the jwts can be decoded by anyone 
+
+but they can be verified by only the server that issued them,
+so it is not a problem
+
+just like you can sign a cheque and show it to everyone but it will 
+only go through once you have been verified as the passbook holder
+
+we then make a middleware that takes the token and check if the user exists
+
+if it does then it sends us forward and also gives the user in the request for future user
+otherwise we stop 
+
+we make a frontend and to ensure that there are no CORS error , we load the html file on http://localhost:3000 itself
+
+it has a signup/signin section , so we implement that functionality and with the help of axios calls
+we make contact with our backend , and we store the reponse recieved from the backend
+
+if we have signed in a user , we need to store the users token in the localstorage of the session , it should stay there
+till the time user log outs , and if the user log outs the token gets deleted
