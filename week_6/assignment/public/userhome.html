@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USER HOME PAGE</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js"></script>
+
+</head>
+<body>
+    
+    <div id="userInfo">
+        
+    </div>
+
+    
+
+    <div id ='todos'>
+
+    </div>
+
+    <div id="add_todo">
+        <input type="text" name="task" id="task" placeholder="task">
+        <select name="urgency" id="urgency">
+            <option value="extreme">extreme</option>
+            <option value="high">high</option>
+            <option value="medium">medium</option>
+            <option value="low">low</option>
+        </select>
+
+        <select name="category" id="category">
+            <option value="study">study</option>
+            <option value="health">health</option>
+            <option value="office">office</option>
+            <option value="miscellaneous">miscellaneous</option>
+        </select>
+
+        <input type="time" name="time" id="time" placeholder="time">
+
+        <button onclick="addTODO()">ADD</button>
+    </div>
+
+    <script>
+
+        if (!localStorage.getItem("token")) {
+                alert("Please sign in first");
+                window.location.href = "signin.html";
+            }
+
+        
+        async function getTODO() {
+            const response = await axios.get("http://localhost:3000/getTODO",{
+                headers:{
+                    Authorization:`Bearer ${localStorage.getItem("token")}`
+                }
+            }
+            );
+
+            const parentelement = document.getElementById('todos');
+            parentelement.innerHTML = "";
+
+            const todos = response.data;
+
+            Object.entries(todos).forEach(([key, value]) => {
+                const childNODE = document.createElement("div");
+                childNODE.id = "todo" + key;
+
+                let string = `ID: ${key} <br>`;
+                Object.entries(value).forEach(([innerkey, innervalue]) => {
+                    string += `${innerkey}: ${innervalue}<br>`;
+                });
+
+                string += `<button onclick="editTODO('${key}')">EDIT</button><br><br>`;
+
+                childNODE.innerHTML = string;
+                parentelement.appendChild(childNODE);
+        });
+
+    // Infinite refresh optional
+    // Promise.resolve().then(getTODO);
+}
+
+    async function editTODO(id) {
+        const todoDiv = document.getElementById("todo" + id);
+
+        // Use consistent format in regex
+        const fields = Array.from(todoDiv.innerHTML.matchAll(/(\w+): ([^<]+)<br>/g));
+
+        let formHTML = `<form onsubmit="saveEdit(event, '${id}')">`;
+        fields.forEach(([_, key, val]) => {
+            if (key !== 'ID') {  // Skip ID line
+                formHTML += `${key}: <input type="text" name="${key}" value="${val}"><br>`;
+            }
+        });
+        formHTML += `<button type="submit">💾 Save</button>`;
+        formHTML += `</form>`;
+
+        todoDiv.innerHTML = formHTML;
+    }
+
+    async function saveEdit(event, id) {
+        event.preventDefault(); // prevent page reload on form submit
+
+        const form = event.target;
+        const updatedTODO = {};
+
+        for (let input of form.elements) {
+            if (input.name && input.type === "text") {
+                updatedTODO[input.name] = input.value;
+            }
+        }
+
+        try {
+            const response = await axios.post("http://localhost:3000/updateTODO", {
+                id: id,
+                updated: updatedTODO
+            }, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                }
+            });
+
+            alert("TODO updated successfully");
+            getTODO(); // refresh list
+        } catch (e) {
+            const msg = e.response?.data?.error || "Failed to update TODO";
+            alert(msg);
+        }
+    }
+
+
+        // Run on page load
+        getTODO();
+
+        async function addTODO() {
+            const task = document.getElementById("task").value;
+            const urgency = document.getElementById("urgency").value;
+            const category = document.getElementById("category").value;
+            const time = document.getElementById("time").value;
+
+            const newTODO = {
+                task:task,
+                urgency:urgency,
+                category:category,
+                time:time
+            }
+            console.log(0.5)
+
+            const response = await axios.post("http://localhost:3000/addTODO", {
+                            todo: newTODO
+                            }, {
+                            headers: {
+                            Authorization: `Bearer ${localStorage.getItem("token")}`
+                            }
+                });
+
+            console.log(0.75)    
+            alert("successfull add")    
+
+            await getTODO();
+
+            document.getElementById("task").innerHTML = ""
+
+            cdocument.getElementById("time").innerHTML = ""
+
+        }
+
+    </script>
+</body>
+</html>

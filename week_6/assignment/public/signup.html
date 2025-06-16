@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGN UP PAGE</title>
+
+    <!-- add the external axios library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js"></script>
+    
+</head>
+<body>
+    <div>
+        <div>
+        SIGNUP
+        <input type="text" id="signup_name"placeholder="name">
+        <input type="text" id="signup_email"placeholder="email">
+        <input type="text" id="signup_pass" placeholder="pass">
+        <button onclick="signup()">Submit</button>
+    </div>
+    </div>
+
+    <script>
+        async function signup(){
+            try{
+                const name = document.getElementById("signup_name").value;
+                const email = document.getElementById("signup_email").value;
+                const pass = document.getElementById("signup_pass").value;
+
+                const response = await axios.post("http://localhost:3000/signup",{
+                    name:name,
+                    email:email,
+                    pass:pass
+                })
+                // alert("signed up successfully")
+                
+                alert(response.data.message)
+                window.location.href = "signin.html";
+            }
+            
+            catch(e){
+                const backendMessage = e.response?.data?.error || "Something went wrong!";
+                alert("Signup failed: " + backendMessage);
+            }
+        }
+    </script>
+    
+</body>
+</html>
