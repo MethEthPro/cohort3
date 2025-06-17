@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken")
 const JWT_SECRET = "IHSFVIPVSOJDNWO"
 
 const mongoose = require("mongoose")
-mongoose.connect("mongodb+srv://ahujasarthak17:jBMnWuhYQup5QjlR@cluster0.ibzlnrz.mongodb.net/test")
+mongoose.connect("")
 
 const {UserModel,TodoModel} = require("./db")
  
