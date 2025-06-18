@@ -1,0 +1,41 @@
+password hashing
+
+you cant just save the password in the Database
+if there is a data breach , all the passwords get leaked
+
+instead we use hashing with salting
+hashing is one way only , you can encode the pass into some text , but can never decode it back
+
+so something like pass--->(hashed pass)
+
+now if the user sign in
+then the pass is converted to hash pass and then compared with hashed pass stored in the database
+but there is a problem if 2 users have same password, then there hashed pass will also be same
+we dont want this
+
+so we use salting
+we add some random string with our pass , then hash the entire thing, and store the hashed pass with the salt in the database
+
+eg.  123123+hisdbkvc(salt)-->123123hisdbkvc--->hashed pass
+we store the hashed pass and the salt(hisdbkvc)
+
+so the next time when user enter the pass 123123, we first get the salt(hisdbkvc)from the db, convert it into hashed pass
+
+and then compare it with the hashed pass stored in the database
+
+
+BUT in the implementation we are stroing the pass+salt as hashedpass
+so no need to store the salt separately its there in out hashedpass
+so just get the hashedpass from the db and compare it with the inbuilt bcrypt.compare() 
+
+then we learnt about zod to learn about input validation
+
+we create a schema of our req.body 
+and how everything inside it should be 
+
+then we do schema.safeParse(req.body)
+
+if it is not success then we stop there and display all the error messages or else we continue 
+
+
+
