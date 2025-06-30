@@ -11,6 +11,7 @@ Notes:
 3. useState Hook:
     - The useState hook is one of the fundamental React hooks, used to manage state in functional components. 
     - It allows a component to have and update internal data that can influence how the UI is rendered.
+    -whenver the value of state variable changes, react re-renders the component that uses that state variable
     - Syntax:
         const [state, setState] = useState(initialValue);
         
@@ -53,3 +54,27 @@ Notes:
 7. Conditional rendering: 
     - Conditional rendering in React allows you to render different components or elements based on certain conditions. 
     - This is similar to using conditional statements in JavaScript, such as if, else, and the ternary operator. Conditional rendering is a powerful feature that helps you create dynamic and responsive user interfaces.
+
+    somthing like 
+    {(time!= undefined) ? some html:some other html or null}
+
+    so if no time is given in the props then there would be some other rendering or nothing is rendered
+
+    another example
+
+    import React, { useState } from 'react';
+
+    const ToggleMessage = () => {
+        const [isVisible, setIsVisible] = useState(false);
+
+        return (
+            <div>
+                <button onClick={() => setIsVisible(!isVisible)}>
+                    Toggle Message
+                </button>
+                {isVisible && <p>This message is conditionally rendered!</p>}
+            </div>
+        );
+    };
+
+

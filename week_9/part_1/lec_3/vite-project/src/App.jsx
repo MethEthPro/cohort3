@@ -9,7 +9,7 @@ function App() {
      <div style={{backgroundColor:"#95a5a6",minHeight:"100vh"}}>
 
           
-
+            <ToggleMessage/>
             <ProfileCardComponent />
             <ProfileCardComponent/>
 
@@ -17,10 +17,10 @@ function App() {
         <div style={{display:"flex",justifyContent:"center"}}>
           <div>
           <div>
-            <PostComponent followers={"30"} time={2} text={"hello guys"}/>
+            <PostComponent subtitle={"30 followers"} time={2} text={"hello guys"}/>
           </div>
           <div>
-            <PostComponent followers={"20"} time={3} text={"hi there"}/>
+            <PostComponent subtitle={"promoted"}  text={"hi there"}/>
           </div>
           </div>
         </div>
@@ -37,7 +37,7 @@ export default App
 
 
 
-function PostComponent({followers,time,text}){
+function PostComponent({subtitle,time,text}){
   return (
     <>
     <div style={{backgroundColor:"white",width:200,padding:10,borderRadius:15,margin:10}}>
@@ -48,8 +48,15 @@ function PostComponent({followers,time,text}){
       <div style={{marginLeft:5}}>
         <b>sarthak</b>
 
-        <div>{followers} followers</div>
-        <div>{time} mins ago</div>
+        <div>{subtitle} </div>
+        {(time!=undefined) ?  <div style={{display:"flex"}}>
+          <div>{time} mins ago</div>
+          <img src="https://images.pexels.com/photos/833487/pexels-photo-833487.jpeg" 
+          style={{width:17,height:17}}
+          />
+
+        </div>:null}
+        
       </div>
     </div>
     <br />
@@ -103,3 +110,19 @@ function ProfileCardComponent(){
       </div>
     )
 }
+
+
+
+
+const ToggleMessage = () => {
+    const [isVisible, setIsVisible] = useState(false);
+
+    return (
+        <div>
+            <button onClick={() => setIsVisible(!isVisible)}>
+                Toggle Message
+            </button>
+            {isVisible && <p>This message is conditionally rendered!</p>}
+        </div>
+    );
+};
