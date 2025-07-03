@@ -6,6 +6,7 @@ import {BrowserRouter, Routes ,Route} from "react-router-dom"
 import Layout from './components/Layout'
 import Home from './components/Home'
 import Programs from './components/Programs'
+import Error from './components/Error'
 function App() {
   const [count, setCount] = useState(0)
 
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" element={<Layout/>}>
             <Route path="/" element={<Home/>}/>
             <Route path="/programs" element={<Programs/>} />
+            <Route path='*' element={<Error/>}/>
           </Route>
 
         </Routes>
